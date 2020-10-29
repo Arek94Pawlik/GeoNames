@@ -1,0 +1,290 @@
+﻿<!doctype html>
+
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+
+	<title>Geonames Exercise</title>
+	<meta name="description" content="Exercise to show different APIs from GeoNames Web Service">
+	<meta name="author" content="Arek Pawlik">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link rel="icon" href="favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="libs/css/preloader.css" />
+	<link rel="stylesheet" type="text/css" href="libs/css/exerciseCSS.css" />
+
+</head>
+
+<body>
+
+	<div id="preloader"></div>
+
+	<h2>GeoNames API table</h2>
+	<h3>By Arek Pawlik</h3>
+
+	<div class="menu">
+		<table class="menuTable">
+			<tr>
+				<th class="apiName">API name</th>
+				<th class="apiDescription">API description</th>
+				<th class="actionButton">Action</th>
+			</tr>
+			<tr>
+				<td class="apiName">Country Info (Example)</td>
+				<td class="apiDescription">Example provided by quared for a chosen country. Also allows for the language of the response to be chosen.</td>
+				<td class="actionButton"><button class="choice" id="exampleChoice">Select</button></td>
+			</tr>
+			<tr>
+				<td class="apiName">Country Code</td>
+				<td class="apiDescription">Returns the country and it's code based on latitude and longtitude provided using sliders.</td>
+				<td class="actionButton"><button class="choice" id="countryCodeChoice">Select</button></td>
+			</tr>
+			<tr>
+				<td class="apiName">Timezone</td>
+				<td class="apiDescription">Given the latitude and the longtitude using the provided sliders, it returns the current time, sunrise time, sunset time as well as the country and its code.</td>
+				<td class="actionButton"><button class="choice" id="timezoneChoice">Select</button></td>
+			</tr>
+			<tr>
+				<td class="apiName">Elevation</td>
+				<td class="apiDescription">Returns elevation above the sea level, given the latitude and the longitude using the provided sliders. </td>
+				<td class="actionButton"><button class="choice" id="elevationChoice">Select</button></td>
+			</tr>
+		</table>
+	</div>
+	<div class="results">
+		<table>
+			<tr>
+				<td colspan="3">
+
+					<div class="display" id="example">
+						<select id="selCountry">
+							<option value="GB">Great Britain</option>
+							<option value="FR">France</option>
+							<option value="DE">Germany</option>
+							<option value="US">USA</option>
+						</select>
+
+						<select id="selLanguage">
+							<option value="en">English</option>
+							<option value="fr">Francais</option>
+							<option value="de">Deutsche</option>
+						</select>
+
+						<button id="exampleBtnRun">Run</button>
+
+						<br><br>
+
+						<div id="exampleResults">
+
+							<table>
+
+								<tr>
+									<td align="right">
+										Continent:
+									</td>
+									<td id="txtContinent">
+									</td>
+
+								</tr>
+
+								<tr>
+									<td align="right">
+										Capital:
+									</td>
+									<td id="txtCapital">
+									</td>
+
+								</tr>
+
+								<tr>
+									<td align="right">
+										Languages:
+									</td>
+									<td id="txtLanguages">
+									</td>
+
+								</tr>
+
+								<tr>
+									<td align="right">
+										Population:
+									</td>
+									<td id="txtPopulation">
+									</td>
+
+								</tr>
+
+								<tr>
+									<td align="right">
+										Area (km<sup>2</sup>):
+									</td>
+									<td id="txtArea">
+									</td>
+
+								</tr>
+
+
+							</table>
+
+						</div>
+					</div>
+					<div class="display" id="countryCodes">
+
+						<label for="codeLat">Latitude</label>
+						<input type="range" id="codeLatitude" name="codeLatitude" oninput="document.getElementById('codeLatValue').innerHTML = this.value;" value="0" min="-90" max="90" step="0.01">
+						<em id="codeLatValue"></em><br>
+						<label for="codeLng">Longtitude</label>
+						<input type="range" id="codeLongtitude" name="codeLongtitude" oninput="document.getElementById('codeLongValue').innerHTML = this.value;" value="0" min="-180" max="180" step="0.01">
+						<em id="codeLongValue"></em><br><br>
+
+
+						<button id="codeBtnRun">Run</button>
+
+						<br><br>
+
+						<div id="codeResults">
+
+							<table>
+
+								<tr>
+									<td align="right">
+										Country code:
+									</td>
+									<td id="codeTxtCode">
+									</td>
+
+								</tr>
+								<tr>
+									<td align="right">
+										Country:
+									</td>
+									<td id="codeTxtCountry">
+									</td>
+
+								</tr>
+
+							</table>
+
+						</div>
+					</div>
+					<div class="display" id="timezone">
+
+
+						<label for="timezoneLat">Latitude</label>
+						<input type="range" id="timezoneLatitude" name="timezoneLatitude" oninput="document.getElementById('timezoneLatValue').innerHTML = this.value;" value="0" min="-90" max="90" step="0.01">
+						<em id="timezoneLatValue"></em><br>
+						<label for="timezoneLng">Longtitude</label>
+						<input type="range" id="timezoneLongtitude" name="timezoneLongtitude" oninput="document.getElementById('timezoneLongValue').innerHTML = this.value;" value="0" min="-180" max="180" step="0.01">
+						<em id="timezoneLongValue"></em><br><br>
+
+
+						<button id="timezoneBtnRun">Run</button>
+
+						<br><br>
+
+						<div id="timezoneResults">
+
+							<table>
+
+								<tr>
+									<td align="right">
+										Time:
+									</td>
+									<td id="txtCurrentTime">
+									</td>
+
+								</tr>
+
+								<tr>
+									<td align="right">
+										Sunrise:
+									</td>
+									<td id="txtSunrise">
+									</td>
+
+								</tr>
+
+								<tr>
+									<td align="right">
+										Sunset:
+									</td>
+									<td id="txtSunset">
+									</td>
+
+								</tr>
+
+								<tr>
+									<td align="right">
+										Country:
+									</td>
+									<td id="timezoneTxtCountry">
+									</td>
+
+								</tr>
+
+								<tr>
+									<td align="right">
+										Country Code:
+									</td>
+									<td id="timezoneTxtCountryCode">
+									</td>
+
+								</tr>
+
+
+							</table>
+
+						</div>
+
+					</div>
+					<div class="display" id="elevation">
+
+
+						<label for="elevationLat">Latitude</label>
+						<input type="range" id="elevationLatitude" name="elevationLatitude" oninput="document.getElementById('elevationLatValue').innerHTML = this.value;" value="0" min="-90" max="90" step="0.01">
+						<em id="elevationLatValue"></em><br>
+						<label for="elevationLng">Longtitude</label>
+						<input type="range" id="elevationLongtitude" name="elevationLongtitude" oninput="document.getElementById('elevationLongValue').innerHTML = this.value;" value="0" min="-180" max="180" step="0.01">
+						<em id="elevationLongValue"></em><br><br>
+
+
+						<button id="elevationBtnRun">Run</button>
+
+						<br><br>
+
+						<div id="elevationResults">
+
+							<table>
+
+								<tr>
+									<td align="right">
+										Elevation above sea level in meters:
+									</td>
+									<td id="txtElevation">
+									</td>
+
+								</tr>
+
+							</table>
+
+						</div>
+
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<script type="application/javascript" src="libs/vendors/jquery-2.2.3.min.js"></script>
+	<script type="application/javascript" src="libs/js/preloader.js"></script>
+	<script type="application/javascript" src="libs/js/exercise.js"></script>
+	<script type="application/javascript" src="libs/js/exampleScript.js"></script>
+	<script type="application/javascript" src="libs/js/countryCodesScript.js"></script>
+	<script type="application/javascript" src="libs/js/timezoneScript.js"></script>
+	<script type="application/javascript" src="libs/js/elevationScript.js"></script>
+
+</body>
+
+</html>
