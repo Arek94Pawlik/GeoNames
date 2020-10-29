@@ -1,0 +1,38 @@
+﻿table {
+    border-collapse: collapse;
+}
+
+.menu th, .menu td, .results {
+    border: 2px solid black;
+}
+
+.apiName {
+    width: 20%;
+}
+
+.apiDescription {
+    width: 80%;
+}
+
+.actionButton {
+    width: 10%;
+}
+
+.menuTable {
+    min-width: 50%;
+    height: auto;
+}
+
+.choice {
+    background-color: #f2f2f2;
+    color: #a6a6a6;
+}
+
+.results {
+    min-height: 200px;;
+}
+
+.display {
+    display: none;
+}
+
